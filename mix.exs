@@ -14,7 +14,7 @@ defmodule CowboyTutorial.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger],
+    [applications: [:logger, :cowboy],
      mod: {CowboyTutorial, []}]
   end
 
@@ -28,6 +28,8 @@ defmodule CowboyTutorial.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      {:cowboy, git: "https://github.com/ninenines/cowboy.git", tag: "2.0.0-pre.5"}
+    ]
   end
 end
