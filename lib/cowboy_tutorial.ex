@@ -15,7 +15,8 @@ defmodule CowboyTutorial do
   def run do
     # ルーティングの設定
     routes = [
-      {"/:static_html", CowboyTutorial.HttpHandler, []}
+      {"/:static_html", CowboyTutorial.HttpHandler, []},
+      {"/priv/static/css/:static_css", CowboyTutorial.CssHandler, []}
     ]
 
     # http アクセスする箇所の記載

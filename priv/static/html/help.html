@@ -1,11 +1,38 @@
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset=\"utf-8\">
-      <title>Cowboy Hello!</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    
+    <title>Cowboy Hello!</title>
+    <link rel="stylesheet" href="priv/static/css/app.css">
   </head>
   <body>
-    <div class="jumbotron">
-      <h2>Welcome to Static Pages Help!</h2>
+        <header class="navbar navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="logo" href="<%= page_path(@conn, :index) %>"></a>
+          <nav>
+            <ul class="nav nav-pills pull-right">
+              <li><a href="home">Home</a></li>
+              <li><a href="help">Help</a></li>
+              <li><a href=#>Sign in</a></li>
+              <li><a href="http://www.phoenixframework.org/docs">Phoenix Get Started</a>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="jumbotron">
+        <h2>Welcome to Static Pages Help!</h2>
+      </div>
     </div>
+
+   <script src="priv/static/js/app.js"></script>
   </body>
 </html>
