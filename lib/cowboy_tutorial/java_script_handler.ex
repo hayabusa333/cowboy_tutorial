@@ -1,7 +1,7 @@
 defmodule CowboyTutorial.JavaScriptHandler do
   def init(req, opts) do
     method = :cowboy_req.method(req)
-    param = :cowboy_req.binding(:static_css, req)
+    param = :cowboy_req.binding(:static_js, req)
     {:ok, resp} = js_respons(method, param, req)
     {:ok, resp, opts}
   end
