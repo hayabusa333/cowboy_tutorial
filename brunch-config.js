@@ -37,7 +37,7 @@ exports.config = {
       }
     },
     copycat: {
-      "fonts": ["node_modules/bootstrap-sass/assets/fonts/bootstrap"]
+      "css/font": ["node_modules/bootstrap-sass/assets/fonts/bootstrap"]
     }
   },
 
