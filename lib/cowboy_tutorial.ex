@@ -16,6 +16,7 @@ defmodule CowboyTutorial do
     # ルーティングの設定
     routes = [
       {"/:static_html", CowboyTutorial.HttpHandler, []},
+      {"/priv/static/css/font/:static_font", CowboyTutorial.FontHandler, []},
       {"/priv/static/css/:static_css", CowboyTutorial.CssHandler, []},
       {"/priv/static/js/:static_js", CowboyTutorial.JavaScriptHandler, []}
     ]
