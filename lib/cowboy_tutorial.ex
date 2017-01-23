@@ -5,7 +5,8 @@ defmodule CowboyTutorial do
     import Supervisor.Spec, warn: false
 
     children = [
-      worker(__MODULE__, [], function: :run)
+      worker(__MODULE__, [], function: :run),
+      worker(CowboyTutorial.Repo, [])
     ]
 
     opts = [strategy: :one_for_one, name: CowboyTutorial.Supervisor]
