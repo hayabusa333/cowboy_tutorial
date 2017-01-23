@@ -12,7 +12,7 @@ defmodule CowboyTutorial.FontHandler do
     |> Enum.at(1)
     |> font_header
 
-    {:ok, file} = File.read "priv/static/css/font/#{param}"
+    {:ok, file} = File.read "priv/static/fonts/#{param}"
     body = file
     {:ok, resp} = :cowboy_req.reply(200, headers, body, req)
   end
