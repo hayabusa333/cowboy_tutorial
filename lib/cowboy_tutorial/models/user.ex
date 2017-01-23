@@ -4,6 +4,8 @@ defmodule CowboyTutorial.Models.User do
   schema "users" do
     field :name, :string
     field :email, :string
+    field :password_digest, :string
+    field :password, :string, virtual: true
 
     timestamps()
   end
