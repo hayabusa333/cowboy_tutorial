@@ -1,13 +1,23 @@
 defmodule CowboyTutorial.HttpHandler do
+  def init(req, :user) do
+    method = :cowboy_req.method(req)
+    id = :cowboy_req.binding(:id, req)
+    param = "show"
+    path = "priv/static/html/user/"
+    {:ok, resp} = html_respons(method, param, path, req)
+    {:ok, resp, []}
+  end
+
   def init(req, opts) do
     method = :cowboy_req.method(req)
     param = :cowboy_req.binding(:static_html, req)
-    {:ok, resp} = html_respons(method, param, req)
+    path = "priv/static/html/"
+    {:ok, resp} = html_respons(method, param, path, req)
     {:ok, resp, opts}
   end
 
-  def html_read(param) do
-    case File.read "priv/static/html/#{param}.html" do
+  def html_read(param, path) do
+    case File.read "#{path}#{param}.html" do
       {:ok, file} ->
         body = file
         {200, body}
@@ -17,9 +27,9 @@ defmodule CowboyTutorial.HttpHandler do
     end
   end
 
-  def html_respons("GET", param, req) do
+  def html_respons("GET", param, path, req) do
     headers = %{"content-type" => "text/html"}
-    {states, body} = html_read(param)
+    {states, body} = html_read(param, path)
     {:ok, resp} = :cowboy_req.reply(states, headers, body, req)
   end
 
