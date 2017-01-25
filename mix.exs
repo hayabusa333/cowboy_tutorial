@@ -32,6 +32,7 @@ defmodule CowboyTutorial.Mixfile do
       {:cowboy, git: "https://github.com/ninenines/cowboy.git", tag: "2.0.0-pre.5"},
       {:postgrex, "~> 0.13.0"},
       {:ecto, "~> 2.1.3"},
+      {:poison, "~> 3.0.0"}
     ]
   end
 end
