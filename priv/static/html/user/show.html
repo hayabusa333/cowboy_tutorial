@@ -29,8 +29,7 @@
 
     <div class="container">
       <div class="jumbotron">
-        <strong>Name:</strong><%= @user.name %>
-        <strong>Email:</strong><%= @user.email %>
+        <div id="elm-main"></div>
       </div>
       <footer class="footer">
         <nav>
@@ -43,5 +42,6 @@
     </div>
 
     <script src="/priv/static/js/app.js"></script>
+    <script>require("static/js/app").App.run()</script>    
   </body>
 </html>

@@ -19,13 +19,19 @@ exports.config = {
 
   paths: {
     watched: [
-      "static"
+      "static",
+      "elm/Main.elm"
     ],
 
     public: "priv/static"
   },
 
   plugins: {
+    elmBrunch: {
+      elmFolder: "elm",
+      mainModules: ["Main.elm"],
+      outputFolder: "../static/vendor"
+    },
     babel: {
       // Do not use ES6 compiler in vendor code
       ignore: [/static\/vendor/]
