@@ -29,8 +29,8 @@ defmodule CowboyTutorial.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:cowboy, git: "https://github.com/ninenines/cowboy.git", tag: "2.0.0-pre.5"},
-      {:postgrex, "~> 0.13.0"},
+      {:cowboy, git: "https://github.com/ninenines/cowboy.git", tag: "2.0.0-rc.3"},
+      {:postgrex, "~> 0.13.3"},
       {:ecto, "~> 2.1.3"},
       {:poison, "~> 3.0.0"}
     ]

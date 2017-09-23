@@ -30,6 +30,6 @@ defmodule CowboyTutorial do
     opts = [{:port, 4000}]
     env = %{dispatch: dispatch}
 
-    {:ok, _pid} = :cowboy.start_clear(:http, 100, opts, %{env: env})
+    {:ok, _pid} = :cowboy.start_clear(:http, opts, %{env: env})
   end
 end
