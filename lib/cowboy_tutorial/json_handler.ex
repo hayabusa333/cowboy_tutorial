@@ -11,11 +11,9 @@ defmodule CowboyTutorial.JsonHandler do
   def json_respons("GET", req) do
     headers = %{"content-type" => "application/json"}
 
-#    user = CowboyTutorial.Repo.get!(CowboyTutorial.Models.User, id)
     query = from c in CowboyTutorial.Models.User, select: c
     users = CowboyTutorial.Repo.all(query)
-#    body = Poison.Encoder.encode( %{name: user.name, email: user.email}, [])
-    body = Poison.Encoder.encode( %{name: Enum.map(users, &(&1.name)), email: Enum.map(users, &(&1.email))}, [])
+    body = Poison.Encoder.encode(Enum.map(users, &(%{name: &1.name, email: &1.email})), [])
     {:ok, resp} = :cowboy_req.reply(200, headers, body, req)
   end
 

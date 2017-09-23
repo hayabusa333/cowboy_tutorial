@@ -13,21 +13,27 @@ type alias User =
   , email : String
   }
 
-type Msg =
-  LoadUserData ( Result Http.Error User )
-  | Name String
-  | Email String
+type alias Users =
+  { listUsers : List User }
 
-init : ( User, Cmd Msg )
+type Msg =
+  LoadUsersData (Result Http.Error (List User))
+
+init : ( Users, Cmd Msg )
 init =
-  ( { name = "empty", email = "empty" }
+  ( { listUsers = [] }
   , sendRequest
   )
 
 -- View
 
-view : User -> Html Msg
-view user =
+view : Users -> Html Msg
+view users =
+    div []
+        (List.map renderUser users.listUsers)
+
+renderUser : User -> Html msg
+renderUser user =
     div []
         [ strong [] [ text "Name:" ] 
         , text user.name
@@ -37,27 +43,23 @@ view user =
 
 -- update
 
-update : Msg -> User -> ( User, Cmd Msg )
-update msg user =
+update : Msg -> Users -> ( Users, Cmd Msg )
+update msg users =
   case msg of
-    LoadUserData ( Ok newUser ) ->
-      ( newUser, Cmd.none )
-    LoadUserData ( Err _ ) ->
-      ( user, Cmd.none )
-    Name name ->
-      ( { user | name = name }, Cmd.none )
-    Email email ->
-      ( { user | email = email }, Cmd.none )
+    LoadUsersData ( Ok newUsers ) ->
+      ( { users | listUsers = newUsers }, Cmd.none )
+    LoadUsersData ( Err _ ) ->
+      ( { users | listUsers = [ {name = "err", email = "err"} ], Cmd.none )
 
 -- subscriptions
 
-subscriptions : User -> Sub Msg
+subscriptions : Users -> Sub Msg
 subscriptions user =
     Sub.none
 
 -- MAIN
 
-main : Program Never User Msg
+main : Program Never Users Msg
 main =
     Html.program
         { init = init
@@ -77,15 +79,19 @@ emailDecoder =
 userDecoder =
   Decode.map2 User nameDecoder emailDecoder 
 
+usersDecoder =
+  Decode.list userDecoder
+
+
 -- request 
-getUserUrl : String
-getUserUrl =
+getUsersUrl : String
+getUsersUrl =
   "http://localhost:4000/api/users/"
 
-getUser : Http.Request User
-getUser =
-  Http.get getUserUrl userDecoder
+getUsers : Http.Request (List User)
+getUsers =
+  Http.get getUsersUrl usersDecoder
 
 sendRequest : Cmd Msg
 sendRequest =
-  Http.send LoadUserData getUser 
+  Http.send LoadUsersData getUsers
