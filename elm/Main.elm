@@ -49,7 +49,7 @@ update msg users =
     LoadUsersData ( Ok newUsers ) ->
       ( { users | listUsers = newUsers }, Cmd.none )
     LoadUsersData ( Err _ ) ->
-      ( { users | listUsers = [ {name = "err", email = "err"} ], Cmd.none )
+      ( { users | listUsers = [ {name = "err", email = "err"} ]}, Cmd.none )
 
 -- subscriptions
 

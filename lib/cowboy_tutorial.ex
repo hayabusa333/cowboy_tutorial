@@ -16,8 +16,8 @@ defmodule CowboyTutorial do
   def run do
     # ルーティングの設定
     routes = [
+      {"/users", CowboyTutorial.HttpHandler, :users},
       {"/:static_html", CowboyTutorial.HttpHandler, []},
-      {"/user/:id", CowboyTutorial.HttpHandler, :user},
       {"/api/users", CowboyTutorial.JsonHandler, []},
       {"/priv/static/fonts/:static_font", CowboyTutorial.FontHandler, []},
       {"/priv/static/css/:static_css", CowboyTutorial.CssHandler, []},

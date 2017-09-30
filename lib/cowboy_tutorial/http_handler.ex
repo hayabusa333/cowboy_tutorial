@@ -1,7 +1,6 @@
 defmodule CowboyTutorial.HttpHandler do
-  def init(req, :user) do
+  def init(req, :users) do
     method = :cowboy_req.method(req)
-    id = :cowboy_req.binding(:id, req)
     param = "show"
     path = "priv/static/html/user/"
     {:ok, resp} = html_respons(method, param, path, req)
