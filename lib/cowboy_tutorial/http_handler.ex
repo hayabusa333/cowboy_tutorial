@@ -1,7 +1,7 @@
 defmodule CowboyTutorial.HttpHandler do
   def init(req, :users) do
     method = :cowboy_req.method(req)
-    param = "show"
+    param = "index"
     path = "priv/static/html/user/"
     {:ok, resp} = html_respons(method, param, path, req)
     {:ok, resp, []}
